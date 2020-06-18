@@ -7,7 +7,7 @@ const request = indexedDB.open('budget', 1);
 
 request.onupgradeneeded = function (event) {
     const db = event.target.result;
-    db.createObjectStore('transaction', {autoIncrement: true})
+    db.createObjectStore("transaction", {autoIncrement: true})
 }
 
 request.onsuccess = function (event){
@@ -24,10 +24,10 @@ request.onerror = function (event){
 
 function saveTransaction (transactionRecord) {
     //creates transaction with readwrite
-    const transaction = db.transaction(['transaction'], 'readwrite');
+    const transaction = db.transaction(["transaction"], "readwrite");
 
     //accesses your transaction object
-    const save = transaction.objectStore('transaction');
+    const save = transaction.objectStore("transaction");
 
     //adds record to your db
     save.add(transactionRecord)
@@ -35,11 +35,11 @@ function saveTransaction (transactionRecord) {
 
 function checkDatabase () {
     //opens the previous transactions to sore them in the db
-    const transaction = db.transaction(['transaction'], 'readwrite');
+    const transaction = db.transaction(["transaction"], "readwrite");
 
     //accesses previous pending object
 
-    const save = transaction.objectStore('transaction');
+    const save = transaction.objectStore("transaction");
 
     //gets all records from variable
     const getAllTransactions = save.getAllTransactions()
@@ -58,10 +58,10 @@ function checkDatabase () {
             .then(response => response.json())
             .then(() => {
                 // if seccussful open the transaction that was pending in the db
-                const transaction = db.transaction(['transaction'], 'readwrite');
+                const transaction = db.transaction(["transaction"], "readwrite");
 
                 // access the pending object to store
-                const save = transaction.objectStore('transaction')
+                const save = transaction.objectStore("transaction")
 
                 // clears all items in save
                 save.clear()
