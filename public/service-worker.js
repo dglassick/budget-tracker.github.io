@@ -1,6 +1,7 @@
 const urlsToCache = [
     "/",
     "/index.js",
+    "/indexDb.js",
     "/manifest.webmanifest",
     "/styles.css",
     "/icons/icon-192x192.png",
