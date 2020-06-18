@@ -1,9 +1,14 @@
-const indexedDB = window.indexedDB
+const indexedDB =
+    window.indexedDB ||
+    window.mozIndexedDB ||
+    window.webkitIndexedDB ||
+    window.msIndexedDB ||
+    window.shimIndexedDB;
 
 let db;
 
 // creating new database for the budget tracker app
-const request = indexedDB.open('budget', 1);
+const request = indexedDB.open("budget", 1);
 
 request.onupgradeneeded = function (event) {
     const db = event.target.result;
@@ -23,6 +28,7 @@ request.onerror = function (event){
 }
 
 function saveTransaction (transactionRecord) {
+    console.log(transactionRecord, 'transactionRecord')
     //creates transaction with readwrite
     const transaction = db.transaction(["transaction"], "readwrite");
 
